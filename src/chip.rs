@@ -247,9 +247,10 @@ impl CCS811 {
             raw: buffer.to_vec()
         };
 
-        if data.t_voc > 1187 || data.e_co2 > 8192 {
-            return Err(format!("The data is above max {}ppb, {}ppm", data.t_voc, data.e_co2));
-        }
+        // Commented this to Allow erroneous values
+        // if data.t_voc > 1187 || data.e_co2 > 8192 {
+        //     return Err(format!("The data is above max {}ppb, {}ppm", data.t_voc, data.e_co2));
+        // }
 
         Ok(data)
     }
