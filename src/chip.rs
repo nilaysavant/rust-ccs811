@@ -258,7 +258,7 @@ impl CCS811 {
         self.i2c
             .write(&cmd)
             .map_err(|error| format!("Could not write cmd to read data from chip: {}", error))?;
-        thread::sleep(time::Duration::from_millis(50));
+        thread::sleep(time::Duration::from_millis(100));
         self.i2c
             .read(&mut buffer)
             .map_err(|error| format!("Could not read data from chip: {}", error))?;
