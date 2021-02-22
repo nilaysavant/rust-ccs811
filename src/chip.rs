@@ -267,7 +267,7 @@ impl CCS811 {
         self.sleep();
 
         if buffer[5] != 0 {
-            return Err(format!("Some error while reading data {:x?}", buffer[5]));
+            return Err(format!("Some error while reading data, buffer[5]={:x?}", buffer[5]));
         }
 
         let data = Ccs811Data {
