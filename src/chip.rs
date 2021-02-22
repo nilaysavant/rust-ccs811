@@ -258,7 +258,7 @@ impl CCS811 {
         self.i2c
             .write(&cmd)
             .map_err(|error| format!("Could not write cmd to read data from chip: {}", error))?;
-        thread::sleep(time::Duration::from_millis(1050));
+        thread::sleep(time::Duration::from_millis(50));
         self.i2c
             .read(&mut buffer)
             .map_err(|error| format!("Could not read data from chip: {}", error))?;
@@ -266,9 +266,9 @@ impl CCS811 {
 
         self.sleep();
 
-        if buffer[5] != 0 {
-            return Err(format!("Some error while reading data, buffer[5]={:x?}", buffer[5]));
-        }
+        // if buffer[5] != 0 {
+        //     return Err(format!("Some error while reading data, buffer[5]={:x?}", buffer[5]));
+        // }
 
         let data = Ccs811Data {
             e_co2: buffer[0] as u16 * 256 + buffer[1] as u16,
